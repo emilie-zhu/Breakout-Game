@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const brickOffsetTop = 30, brickOffsetLeft = 30;
 
     let x = canvas.width/2, y = canvas.height-30;
-    let dx = 1, dy = -1;    // x,y speeds
+    let dx = 10, dy = -10;    // x,y speeds
     let paddleX = (canvas.width-paddleWidth)/2;
     let rightPressed = false, leftPressed = false, mousePressed = false;
     let isPaused = false;
@@ -20,10 +20,12 @@ document.addEventListener("DOMContentLoaded", () => {
         if (e.key==="Right" || e.key==="ArrowRight") {
             rightPressed = true;
             isPaused = false;
+            document.getElementById("pause-button").innerHTML = '<img src="img/pause.png" alt="Pause">';
         }
         else if (e.key==="Left" || e.key==="ArrowLeft") {
             leftPressed = true;
             isPaused = false;
+            document.getElementById("pause-button").innerHTML = '<img src="img/pause.png" alt="Pause">';
         }
     }
 
@@ -120,7 +122,11 @@ document.addEventListener("DOMContentLoaded", () => {
             if (y+dy<ballRadius) dy = -dy;
             else if (y+dy>canvas.height-ballRadius) {
                 if (x>paddleX && x<paddleX+paddleWidth) dy = -dy;
-                else document.location.reload();
+                else {
+                    isPaused = true;
+                    alert("Game Over! Your Score: "+score+", Your Level: "+level);
+                    window.location.reload();
+                }
             }
             if (rightPressed && paddleX<canvas.width-paddleWidth) paddleX += 7;
             else if (leftPressed && paddleX>0) paddleX -= 7;
