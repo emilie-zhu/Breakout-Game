@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const brickOffsetTop = 30, brickOffsetLeft = 30;
 
     let x = canvas.width/2, y = canvas.height-30;
-    let dx = 10, dy = -10;    // x,y speeds
+    let dx = 1, dy = -1;    // x,y speeds
     let paddleX = (canvas.width-paddleWidth)/2;
     let rightPressed = false, leftPressed = false, mousePressed = false;
     let isPaused = false;
